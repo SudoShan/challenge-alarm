@@ -11,16 +11,30 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+      theme: ThemeData( // Light theme
+        brightness: Brightness.light,
+        primaryColor: MyStyles.myPurple,
         colorScheme: ColorScheme.fromSeed(seedColor: MyStyles.myPurple),
       ),
+      darkTheme: ThemeData( // Dark theme
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: MyStyles.myPurple,
+          brightness: Brightness.dark,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: MyStyles.myPurple,
+        ),
+      ),
+      themeMode: ThemeMode.system,
       home: BottomNavBar(),
     );
+
   }
 }

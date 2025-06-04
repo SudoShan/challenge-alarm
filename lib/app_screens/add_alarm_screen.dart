@@ -1,7 +1,10 @@
 import 'package:challenge_alarm/app_screens/alarm_ring_screen.dart';
 import 'package:challenge_alarm/base/my_styles.dart';
 import 'package:flutter/material.dart';
+import '../utils/user_manager.dart';
 import 'challenge_select_screen.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 
 class AddAlarmScreen extends StatefulWidget {
   const AddAlarmScreen({super.key});
@@ -39,7 +42,6 @@ class _AddAlarmScreenState extends State<AddAlarmScreen> {
   @override
   Widget build(BuildContext context) {
     List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-
     return Padding(
       padding: const EdgeInsets.all(0.0),
       child: Column(
@@ -50,7 +52,7 @@ class _AddAlarmScreenState extends State<AddAlarmScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Add Alarm", style: MyStyles.dialogHead),
+              Text("Add Alarm", style: UserManager.isDarkTheme? MyStyles.dialogHead.copyWith(color: MyStyles.foreground): MyStyles.dialogHead),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -64,7 +66,7 @@ class _AddAlarmScreenState extends State<AddAlarmScreen> {
           TextField(
             controller: labelController,
             decoration: MyStyles.myInputDecoration("Label"),
-            style: MyStyles.labelTextStyle,
+            style: UserManager.isDarkTheme? MyStyles.labelTextStyle.copyWith(color: Theme.of(context).colorScheme.onSurface): MyStyles.labelTextStyle,
           ),
 
           Row(
@@ -72,7 +74,7 @@ class _AddAlarmScreenState extends State<AddAlarmScreen> {
             children: [
               Row(
                 children: [
-                  const Text("Ring At "),
+                  Text("Ring At ", style: TextStyle(color: Theme.of(context).colorScheme.onSurface),),
                   TextButton(
                     onPressed: () => _selectTime(context),
                     child: Text(selectedTime.format(context)),
@@ -81,7 +83,7 @@ class _AddAlarmScreenState extends State<AddAlarmScreen> {
               ),
               Row(
                 children: [
-                  const Text("Challenge "),
+                  Text("Challenge ", style: TextStyle(color: UserManager.isDarkTheme? MyStyles.foreground : Colors.black),),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(

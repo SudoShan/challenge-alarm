@@ -129,6 +129,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
             itemBuilder: (context, index) {
               return Card(
                 elevation: 3,
+                color: Theme.of(context).colorScheme.surface,
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: ListTile(
                   onTap: () {
@@ -151,11 +152,11 @@ class _AlarmScreenState extends State<AlarmScreen> {
                     children: [
                       Text(
                         alarms[index]['label'],
-                        style: MyStyles.alarmLabelStyle,
+                        style: MyStyles.alarmLabelStyle.copyWith(color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
                         alarms[index]['time'],
-                        style: MyStyles.alarmTimeStyle,
+                        style: MyStyles.alarmTimeStyle.copyWith(color: Theme.of(context).colorScheme.onSurface),
                       ),
                     ],
                   ),
@@ -167,7 +168,10 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         style: MyStyles.alarmChallengeStyle,
                       ),
                       SizedBox(width: 10),
-                      Text(alarms[index]['date']),
+                      Text(
+                          alarms[index]['date'],
+                          style: MyStyles.alarmLabelStyle.copyWith(color: Theme.of(context).colorScheme.onSurface)
+                      ),
                     ],
                   ),
                   trailing: Switch(
@@ -180,7 +184,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                     },
                   ),
                 ),
-                
+
               );
             },
           ),
@@ -196,7 +200,6 @@ class _AlarmScreenState extends State<AlarmScreen> {
                 showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
-                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   ),

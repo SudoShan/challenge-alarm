@@ -6,6 +6,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 class UserManager {
   static const String _userIdKey = 'user_id';
   static String? userId;
+  static bool isDarkTheme = true;
 
   // Call this in main before runApp
   static Future<void> initializeUser() async {
@@ -36,9 +37,9 @@ class QRCodeWidget extends StatelessWidget {
         data: data,
         version: QrVersions.auto,
         size: 250.0,
-        eyeStyle: QrEyeStyle(color: Colors.black, eyeShape: QrEyeShape.square),
+        eyeStyle: QrEyeStyle(color: UserManager.isDarkTheme? ThemeData.light().colorScheme.surface: Colors.black, eyeShape: QrEyeShape.square),
         dataModuleStyle: QrDataModuleStyle(
-          color: Colors.black,
+          color: UserManager.isDarkTheme? ThemeData.light().colorScheme.surface: Colors.black,
           dataModuleShape: QrDataModuleShape.circle,
         ),
         embeddedImage: AssetImage("assets/challenge_alarm_logo_bordered_qr.png"),

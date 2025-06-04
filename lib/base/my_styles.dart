@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/user_manager.dart';
+
 class MyStyles {
   static Color myPurple = Color(0xFF9966CC);
   static Color lightPurple = Color(0xFFF5EAF7);
@@ -36,7 +38,7 @@ class MyStyles {
   );
 
   static TextStyle alarmLabelStyle = GoogleFonts.openSans(
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
     color: Colors.blueGrey,
@@ -49,7 +51,7 @@ class MyStyles {
     color: Colors.black54,
   );
   static TextStyle alarmChallengeStyle = GoogleFonts.openSans(
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
     color: myPurple,
@@ -94,6 +96,7 @@ class MyStyles {
   static InputDecoration myInputDecoration(String labelText) {
     return InputDecoration(
       labelText: labelText,
+      labelStyle: TextStyle(color: UserManager.isDarkTheme? MyStyles.foreground : Colors.black),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.grey, width: 1),

@@ -94,7 +94,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
         margin: EdgeInsets.only(left: 24),
         padding: EdgeInsets.only(top: 8.0, left: 12.0, right: 12.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
@@ -163,7 +163,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                                   color:
                                       selectedIndex == index
                                           ? Colors.black
-                                          : Colors.grey[800],
+                                          : Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                             ),

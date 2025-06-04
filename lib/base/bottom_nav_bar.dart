@@ -3,6 +3,7 @@ import 'package:challenge_alarm/base/my_styles.dart';
 import 'package:flutter/material.dart';
 import '../app_screens/alarm_screen.dart';
 import '../app_screens/profile_screen.dart';
+import '../utils/user_manager.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -24,6 +25,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    UserManager.isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: appScreens[_selectedIndex],
       appBar: AppBar(

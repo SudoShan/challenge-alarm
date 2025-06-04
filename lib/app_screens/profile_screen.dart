@@ -24,9 +24,13 @@ class ProfileScreenState extends State<ProfileScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(flex: 1, child: SizedBox()),
-          Center(child: Container(
-              height: 300, width: 300,
-              child: QRCodeWidget(data: UserManager.getUserId()),)),
+          Center(
+            child: Container(
+              height: 300,
+              width: 300,
+              child: QRCodeWidget(data: UserManager.getUserId()),
+            ),
+          ),
           Expanded(flex: 1, child: SizedBox()),
           PressShrinkButton(
             onPressed: () {},
@@ -59,7 +63,7 @@ class ProfileScreenState extends State<ProfileScreen> {
             height: 300,
 
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(16),
             ),
 
@@ -81,7 +85,15 @@ class ProfileScreenState extends State<ProfileScreen> {
                           ),
                           Text(
                             "Choose when you want a snoozed alarm to ring",
-                            style: MyStyles.alarmLabelStyle,
+                            style:
+                                UserManager.isDarkTheme
+                                    ? MyStyles.alarmLabelStyle.copyWith(
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface,
+                                    )
+                                    : MyStyles.alarmLabelStyle,
                           ),
                           Expanded(flex: 1, child: SizedBox()),
                           Row(
@@ -97,12 +109,12 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 style: ElevatedButton.styleFrom(
                                   shape: CircleBorder(),
                                   padding: EdgeInsets.all(15),
-                                  elevation: (selected_snooze == index)? 5 : 0,
+                                  elevation: (selected_snooze == index) ? 5 : 0,
                                   shadowColor: MyStyles.myPurple,
                                   backgroundColor:
                                       (selected_snooze == index)
                                           ? MyStyles.myPurple
-                                          : Colors.grey[200],
+                                          : Colors.transparent,
                                   foregroundColor:
                                       (selected_snooze == index)
                                           ? Colors.white
@@ -139,14 +151,22 @@ class ProfileScreenState extends State<ProfileScreen> {
                           ),
                           Text(
                             "Enable to get a notification. If ignored, alarm repeats",
-                            style: MyStyles.alarmLabelStyle,
+                            style:
+                                UserManager.isDarkTheme
+                                    ? MyStyles.alarmLabelStyle.copyWith(
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface,
+                                    )
+                                    : MyStyles.alarmLabelStyle,
                           ),
                           Expanded(flex: 1, child: SizedBox()),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: List.generate(
                               5,
-                                  (index) => ElevatedButton(
+                              (index) => ElevatedButton(
                                 onPressed: () {
                                   setState(() {
                                     selected_check_awake = index;
@@ -155,18 +175,21 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 style: ElevatedButton.styleFrom(
                                   shape: CircleBorder(),
                                   padding: EdgeInsets.all(15),
-                                  elevation: (selected_check_awake == index)? 5 : 0,
+                                  elevation:
+                                      (selected_check_awake == index) ? 5 : 0,
                                   shadowColor: MyStyles.myPurple,
                                   backgroundColor:
-                                  (selected_check_awake == index)
-                                      ? MyStyles.myPurple
-                                      : Colors.grey[200],
+                                      (selected_check_awake == index)
+                                          ? MyStyles.myPurple
+                                          : Colors.transparent,
                                   foregroundColor:
-                                  (selected_check_awake == index)
-                                      ? Colors.white
-                                      : MyStyles.myPurple,
+                                      (selected_check_awake == index)
+                                          ? Colors.white
+                                          : MyStyles.myPurple,
                                 ),
-                                child: Text(check_awake_times[index].toString()),
+                                child: Text(
+                                  check_awake_times[index].toString(),
+                                ),
                               ),
                             ),
                           ),
